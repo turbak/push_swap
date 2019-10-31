@@ -6,12 +6,34 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 17:58:33 by cauranus          #+#    #+#             */
-/*   Updated: 2019/10/29 21:46:45 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/10/31 16:52:44 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
+
+int	check(t_stack *a)
+{
+	while (a->next)
+	{
+		if (a->num > a->next->num)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
+int	check_reversed(t_stack *a)
+{
+	while (a->next)
+	{
+		if (a->num < a->next->num)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
 
 void	write_stacks(t_stack *a, t_stack *b)
 {

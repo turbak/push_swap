@@ -6,13 +6,14 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:13 by cauranus          #+#    #+#             */
-/*   Updated: 2019/10/29 21:45:26 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/10/31 19:02:39 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP
 # define PUSH_SWAP
 # include "libft/libft.h"
+# include <stdio.h>
 
 typedef struct			s_stack
 {
@@ -31,5 +32,9 @@ void					rr(t_stack **a, t_stack **b);
 void					rrab(t_stack **a);
 void					rrr(t_stack **a, t_stack **b);
 int						check(t_stack *a);
-
+int						check_reversed(t_stack *a);
+t_stack					*readtostack(char **av);
+void					die(void);
+void					validate_arr(int *arg, int size);
+t_stack					find_smallest(t_stack *a);
 #endif

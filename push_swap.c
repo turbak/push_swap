@@ -6,45 +6,95 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:01 by cauranus          #+#    #+#             */
-/*   Updated: 2019/10/29 21:52:26 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/10/31 18:58:24 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void die(void)
+int	get_size(t_stack *a)
 {
-	write(1, "Error", 6);
-	exit(-1);
+	int counter;
+
+	counter = 0;
+	while (a)
+	{
+		a = a->next;
+		counter++;
+	}
+	return (counter);
+}
+
+void	size3(t_stack *a)
+{
+	if (a->num > a->next->num && a->next->num > a->next->next->num)
+	{
+		sab(&a);
+		ft_putendl("sa");
+		rrab(&a);
+		ft_putendl("rra");
+	}
+	else if (a->num > a->next->num && a->next->next->num > a->next->num && a->num < a->next->next->num)
+	{
+		sab(&a);
+		ft_putendl("sa");
+	}
+	else if (a->num > a->next->num && a->next->next->num > a->next->num && a->num > a->next->next->num)
+	{
+		rab(&a);
+		ft_putendl("ra");
+	}
+	else if (a->num < a->next->num && a->next->next->num < a->next->num && a->num > a->next->next->num)
+	{
+		rrab(&a);
+		ft_putendl("rra");
+	}
+	else if (a->num < a->next->num && a->next->next->num < a->next->num && a->num < a->next->next->num)
+	{
+		sab(&a);
+		ft_putendl("sa");
+		rab(&a);
+		ft_putendl("ra");
+	}
+}
+
+void	size5(t_stack *a, t_stack *b)
+{
+	pab(&a, &b);
+	pab(&a, &b);
+	ft_putendl("pb\npb");
+	size3(a);
+	if (b->num > b->next->num)
+	{
+		sab(&b);
+		ft_putendl("sb");
+	}
+	pab(&b, &a);
+	pab(&b, &a);
+	ft_putendl("pa\npa");	
+}
+
+void	push_swap(t_stack *a, t_stack *b, int size)
+{
+	if (size == 3)
+		size3(a);
+	else if (size == 5)
+		size5(a, b);
+	else if (size < 101)
+	{
+		
+	}
 }
 
 int	main(int ac, char **av)
 {
-	int *arg;
-	int i;
+	t_stack *a;
 	int size;
 
 	if (ac < 2)
 		die();
-	size = 1;
-	while (av[size])
-	{
-		i = 0;
-		while(av[size][i])
-		{
-			if (!(av[size][i] > '0' || av[size][i] < '9' || av[size][i] == '-'))
-				die();
-			i++;
-		}
-		size++;
-	}
-	arg = (int *)malloc(sizeof(int) * size - 1);
-	i = 0;
-	while (av[i + 1])
-	{
-		arg[i] = ft_atoi(av[i + 1]);
-		i++;
-	}
-	write_stacks(atostack(arg, size - 1), NULL);
+	a = readtostack(av);
+	size = get_size(a);
+	push_swap(a, NULL, size);
 	return (0);
 }

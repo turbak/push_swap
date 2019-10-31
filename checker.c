@@ -6,20 +6,69 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:49:55 by cauranus          #+#    #+#             */
-/*   Updated: 2019/10/29 21:48:02 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/10/30 21:32:35 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check(t_stack *a)
+int	exec(char *str, t_stack *a, t_stack *b)
 {
-	while (a->next)
+	char **list;
+	int	i;
+
+	i = 0;
+	list = ft_strsplit(str, '\n');
+	while (list[i])
 	{
-		if (a->num > a->next->num)
-			return (0);
-		a = a->next;
+		if (ft_strequ(list[i], "sa"))
+			sab(&a);
+		else if (ft_strequ(list[i], "sb"))
+			sab(&b);
+		else if (ft_strequ(list[i], "ss"))
+			ss(&a, &b);
+		else if (ft_strequ(list[i], "pa"))
+			pab(&b, &a);
+		else if (ft_strequ(list[i], "pb"))
+			pab(&a, &b);
+		else if (ft_strequ(list[i], "ra"))
+			rab(&a);
+		else if (ft_strequ(list[i], "rb"))
+			rab(&b);
+		else if (ft_strequ(list[i], "rr"))
+			rr(&a, &b);
+		else if (ft_strequ(list[i], "rra"))
+			rrab(&a);
+		else if (ft_strequ(list[i], "rrb"))
+			rrab(&b);
+		else if (ft_strequ(list[i], "rrr"))
+			rrr(&b, &a);
+		else
+			die();
+		i++;
 	}
-	return (1);
+	return(check(a));
 }
 
+int	main(int ac, char **av)
+{
+	t_stack *a;
+	char	*line;
+	char	*str;
+
+	if (ac < 2)
+		die();
+	a = readtostack(av);
+	str = ft_strnew(0);
+	while (get_next_line(0, &line) > 0)
+	{
+		ft_swapfree((void**)&str, ft_strjoin(str, line));
+		ft_swapfree((void**)&str, ft_strjoin(str, "\n"));
+		ft_strdel(&line);
+	}
+	if (exec(str, a, NULL))
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
+	return (0);
+}

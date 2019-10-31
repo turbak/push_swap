@@ -6,32 +6,12 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 16:42:24 by cauranus          #+#    #+#             */
-/*   Updated: 2019/10/29 21:39:13 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/10/30 21:24:02 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*atostack(int *arg, int size)
-{
-	t_stack *a;
-	t_stack *head;
-	int		i;
-
-	a = malloc(sizeof(t_stack));
-	a->num = arg[0];
-	head = a;
-	i = 1;
-	while (size > i)
-	{
-		a->next = malloc(sizeof(t_stack));
-		a = a->next;
-		a->num = arg[i];
-		i++;
-		a->next = NULL;
-	}
-	return (head);
-}
 /*
 * swap first 2 elems of stack
 */
