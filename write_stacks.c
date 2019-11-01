@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 17:58:33 by cauranus          #+#    #+#             */
-/*   Updated: 2019/10/31 16:52:44 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/01 21:35:47 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,6 @@ int	check_reversed(t_stack *a)
 
 void	write_stacks(t_stack *a, t_stack *b)
 {
-	sab(&a);
-	pab(&a, &b);
-	pab(&a, &b);
-	pab(&a, &b);
-	rab(&a);
-	rab(&b);
-	rrab(&a);
-	rrab(&b);
-	sab(&a);
-	pab(&b, &a);
-	pab(&b, &a);
-	pab(&b, &a);
-	printf("[%d]\n", check(a));
 	while (a || b)
 	{
 		if (a && b)

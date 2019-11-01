@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:01 by cauranus          #+#    #+#             */
-/*   Updated: 2019/10/31 18:58:24 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/01 21:39:10 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,17 @@ void	push_swap(t_stack *a, t_stack *b, int size)
 		size5(a, b);
 	else if (size < 101)
 	{
-		
+		while (a->next)
+		{
+			move_num_up(&a, find_smallest(a), get_size(a));
+			pab(&a, &b);
+			ft_putendl("pb");
+		}
+		while (b)
+		{
+			pab(&b, &a);
+			ft_putendl("pa");
+		}
 	}
 }
 
