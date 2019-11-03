@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:01 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/01 21:39:10 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/03 18:34:45 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,31 +60,44 @@ void	size3(t_stack *a)
 
 void	size5(t_stack *a, t_stack *b)
 {
+	move_num_up(&a, find_smallest(a), get_size(a));
 	pab(&a, &b);
+	ft_putendl("pb");
+	move_num_up(&a, find_smallest(a), get_size(a));
 	pab(&a, &b);
-	ft_putendl("pb\npb");
+	ft_putendl("pb");
 	size3(a);
-	if (b->num > b->next->num)
-	{
-		sab(&b);
-		ft_putendl("sb");
-	}
 	pab(&b, &a);
 	pab(&b, &a);
-	ft_putendl("pa\npa");	
+	ft_putendl("pa\npa");
 }
 
-void	push_swap(t_stack *a, t_stack *b, int size)
+void	push_swap(t_stack *a, t_stack *b, int size, int *sort)
 {
+	int start;
+	int max;
+	int counter;
+	t_stack	*number;
+
 	if (size == 3)
 		size3(a);
 	else if (size == 5)
 		size5(a, b);
-	else if (size < 101)
+	else
 	{
+		start = 0;
+		max = size <= 19 ? size : 19;
+		counter = 0;
 		while (a->next)
 		{
-			move_num_up(&a, find_smallest(a), get_size(a));
+			number = find_min_ops(a, sort, max, start);
+			move_num_up(&a, number, get_size(a));
+			counter++;
+			if (counter % 19 == 0)
+			{
+				start = start + 19 > size ? size : start + 19;
+				max = max + 19 > size ? size : max + 19;
+			}
 			pab(&a, &b);
 			ft_putendl("pb");
 		}
@@ -100,11 +113,13 @@ int	main(int ac, char **av)
 {
 	t_stack *a;
 	int size;
+	int *sort;
 
 	if (ac < 2)
 		die();
 	a = readtostack(av);
 	size = get_size(a);
-	push_swap(a, NULL, size);
+	sort = sorted_arr(readtoarr(av, size), size);
+	push_swap(a, NULL, size, sort);
 	return (0);
 }

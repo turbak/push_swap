@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:13 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/01 21:38:01 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/03 18:32:20 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,14 @@ void					validate_arr(int *arg, int size);
 t_stack					*find_smallest(t_stack *a);
 int						get_ptr_pos(t_stack *a, t_stack *num);
 void					move_num_up(t_stack **a, t_stack *num, int size);
+void					push_swap(t_stack *a, t_stack *b, int size, int *sort);
+int						*sorted_arr(int *arg, int size);
+int						*readtoarr(char **av, int size);
+int						count_operations(t_stack *a, int num, int size);
+t_stack					*find_num(t_stack *a, int number);
+t_stack					*find_min_ops(t_stack *a, int *sort, int max, int start);
+int						get_size(t_stack *a);
+void					free_stack(t_stack **a);
+t_stack					*stackcpy(t_stack *a);
 
 #endif

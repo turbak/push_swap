@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 21:19:41 by cauranus          #+#    #+#             */
-/*   Updated: 2019/10/31 18:11:35 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/02 21:15:09 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,31 @@ void die(void)
 {
 	write(2, "Error\n", 7);
 	exit(-1);
+}
+
+int		*sorted_arr(int *sort, int size)
+{
+	int i;
+	int j;
+	int buf;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (sort[i] > sort[j])
+			{	
+				buf = sort[i];
+				sort[i] = sort[j];
+				sort[j] = buf;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (sort);
 }
 
 t_stack	*atostack(int *arg, int size)
@@ -61,6 +86,21 @@ void	validate_arr(int *arg, int size)
 		}
 		i++;
 	}
+}
+
+int		*readtoarr(char **av, int size)
+{
+	int i;
+	int *arg;
+	
+	arg = (int *)malloc(sizeof(int) * size);
+	i = 0;
+	while (av[i + 1])
+	{
+		arg[i] = ft_atoi(av[i + 1]);
+		i++;
+	}
+	return (arg);
 }
 
 t_stack	*readtostack(char **av)
