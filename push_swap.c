@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:01 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/04 16:51:58 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/04 20:16:01 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,24 +79,59 @@ void	push_swap(t_stack *a, t_stack *b, int size, int *sort)
 	int counter;
 	t_stack	*number;
 
-	if (size == 3)
+	if (size <= 1 || check(a))
+		return ;
+	else if (size == 2)
+	{
+		if (a->next->num < a->num)
+		{
+			sab(&a);
+			ft_putendl("sa");
+		}
+	}
+	else if (size == 3)
 		size3(&a);
 	else if (size == 5)
 		size5(a, b);
-	else
+	else if (size <= 100)
 	{
 		start = 0;
-		max = size < 19 ? size : 19;
+		max = size / 5;
 		counter = 0;
 		while (a)
 		{
 			number = find_min_ops(a, sort, max, start);
 			move_num_up(&a, number, get_size(a), 'a');
 			counter++;
-			if (counter % 19 == 0)
+			if (counter == max)
 			{
-				start = start + 19 > size ? size : start + 19;
-				max = max + 19 > size ? size : max + 19;
+				start = start + size / 5 > size ? size : start + size / 5;
+				max = max + size / 5 > size ? size : max + size / 5;
+			}
+			pab(&a, &b);
+			ft_putendl("pb");
+		}
+		while (b)
+		{
+			move_num_up(&b, find_biggest(b), get_size(b), 'b');
+			pab(&b, &a);
+			ft_putendl("pa");
+		}
+	}
+	else
+	{
+		start = 0;
+		max = size / 15;
+		counter = 0;
+		while (a)
+		{
+			number = find_min_ops(a, sort, max, start);
+			move_num_up(&a, number, get_size(a), 'a');
+			counter++;
+			if (counter == max)
+			{
+				start = start + size / 15 > size ? size : start + size / 15;
+				max = max + size / 15 > size ? size : max + size / 15;
 			}
 			pab(&a, &b);
 			ft_putendl("pb");

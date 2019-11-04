@@ -13,14 +13,14 @@ FILES1 = 	checker.c\
 			stack.c\
 			write_stacks.c
 
-OBJ1 = $(patsubst %.c, %.o, $(FILES1))
-OBJ2 = $(patsubst %.c, %.o, $(FILES2))
+OBJ1 = $(FILES1:%.c=%.o)
+OBJ2 = $(FILES2:%.c=%.o)
 FLAGS		=  -Wall -Werror -Wextra
 HEADER		= push_swap.h
 
-all: push_swap checker
+all: $(NAME2) $(NAME1)
 
-push_swap: $(NAME2)
+push_swap: $(NAME2) 
 
 checker: $(NAME1)
 
@@ -41,6 +41,6 @@ clean:
 	rm -f $(OBJ1) $(OBJ2) && $(MAKE) clean -C ./libft
 
 fclean:clean
-	rm -f $(NAME1) $(OBJ2) && $(MAKE) fclean -C ./libft
+	rm -f $(NAME1) $(NAME2) && $(MAKE) fclean -C ./libft
 
 re: fclean all
