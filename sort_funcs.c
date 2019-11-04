@@ -6,11 +6,25 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:59:07 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/03 18:31:55 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:31:04 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_stack		*find_biggest(t_stack *b)
+{
+	t_stack *biggest;
+
+	biggest = b;
+	while (b)
+	{
+		if (b->num > biggest->num)
+			biggest = b;
+		b = b->next;
+	}
+	return (biggest);
+}
 
 t_stack		*find_smallest(t_stack *a)
 {
@@ -68,7 +82,10 @@ int			count_operations(t_stack *a, int num, int size)
 	{
 		while (cpy != numb)
 		{
-			rrab(&cpy);
+			if (cpy->next == numb)
+				sab(&cpy);
+			else
+				rrab(&cpy);
 			ops++;
 		}
 	}
@@ -76,7 +93,10 @@ int			count_operations(t_stack *a, int num, int size)
 	{
 		while (cpy != numb)
 		{
-			rab(&cpy);
+			if (cpy->next == numb)
+				sab(&cpy);
+			else
+				rab(&cpy);
 			ops++;
 		}
 	}
@@ -84,22 +104,40 @@ int			count_operations(t_stack *a, int num, int size)
 	return (ops);
 }
 
-void		move_num_up(t_stack **a, t_stack *num, int size)
+void		move_num_up(t_stack **a, t_stack *num, int size, char stack)
 {
+	if (!(*a)->next)
+		return ;
 	if (get_ptr_pos(*a, num) > size / 2)
 	{
 		while (*a != num)
 		{
-			rrab(a);
-			ft_putendl("rra");
+			if ((*a)->next == num)
+			{
+				sab(a);
+				ft_putendl(stack == 'a' ? "sa" : "sb");
+			}
+			else
+			{
+				rrab(a);
+				ft_putendl(stack == 'a' ? "rra" : "rrb");
+			}
 		}
 	}
 	else
 	{
 		while (*a != num)
 		{
-			rab(a);
-			ft_putendl("ra");
+			if ((*a)->next == num)
+			{
+				sab(a);
+				ft_putendl(stack == 'a' ? "sa" : "sb");
+			}
+			else
+			{
+				rab(a);
+				ft_putendl(stack == 'a' ? "ra" : "rb");
+			}
 		}
 	}
 }

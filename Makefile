@@ -3,7 +3,11 @@ NAME1 = checker
 FILES2 =	push_swap.c\
 			array_funcs.c\
 			stack.c\
-			write_stacks.c
+			write_stacks.c\
+			sort_funcs.c\
+			sort_misc_funcs.c\
+			freeall.c
+			
 FILES1 = 	checker.c\
 			array_funcs.c\
 			stack.c\

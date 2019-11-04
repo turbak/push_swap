@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:41:25 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/03 18:42:40 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:24:09 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,25 @@ t_stack *find_min_ops(t_stack *a, int *sort, int max, int start)
     ops = 0;
     counter = 0;
     flag = 1;
-    while (start <= max && counter < 2)
+    while (start < max)
     {
-        if ((flag && (count_operations(a, sort[start], get_size(a)) > 0)) || (ops > count_operations(a, sort[start], get_size(a))
-        && count_operations(a, sort[start], get_size(a)) > 0))
+        while (!find_num(a, sort[start]) && start < max)
+            start++;
+        if ((flag || ops > count_operations(a, sort[start], get_size(a))) && start < max)
         {
             ops = count_operations(a, sort[start], get_size(a));
             number = find_num(a, sort[start]);
-            counter++;
             flag = 0;
         }
         start++;
     }
     return (number);
 }
+
+//void    sort_b(t_stack *b, t_stack *num)
+//{
+//    
+//}
 
 t_stack *stackcpy(t_stack *a)
 {

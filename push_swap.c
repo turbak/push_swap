@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:01 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/03 18:34:45 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/04 16:51:58 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,48 +25,48 @@ int	get_size(t_stack *a)
 	return (counter);
 }
 
-void	size3(t_stack *a)
+void	size3(t_stack **a)
 {
-	if (a->num > a->next->num && a->next->num > a->next->next->num)
+	if ((*a)->num > (*a)->next->num && (*a)->next->num > (*a)->next->next->num)
 	{
-		sab(&a);
+		sab(a);
 		ft_putendl("sa");
-		rrab(&a);
+		rrab(a);
 		ft_putendl("rra");
 	}
-	else if (a->num > a->next->num && a->next->next->num > a->next->num && a->num < a->next->next->num)
+	else if ((*a)->num > (*a)->next->num && (*a)->next->next->num > (*a)->next->num && (*a)->num < (*a)->next->next->num)
 	{
-		sab(&a);
+		sab(a);
 		ft_putendl("sa");
 	}
-	else if (a->num > a->next->num && a->next->next->num > a->next->num && a->num > a->next->next->num)
+	else if ((*a)->num > (*a)->next->num && (*a)->next->next->num > (*a)->next->num && (*a)->num > (*a)->next->next->num)
 	{
-		rab(&a);
+		rab(a);
 		ft_putendl("ra");
 	}
-	else if (a->num < a->next->num && a->next->next->num < a->next->num && a->num > a->next->next->num)
+	else if ((*a)->num < (*a)->next->num && (*a)->next->next->num < (*a)->next->num && (*a)->num > (*a)->next->next->num)
 	{
-		rrab(&a);
+		rrab(a);
 		ft_putendl("rra");
 	}
-	else if (a->num < a->next->num && a->next->next->num < a->next->num && a->num < a->next->next->num)
+	else if ((*a)->num < (*a)->next->num && (*a)->next->next->num < (*a)->next->num && (*a)->num < (*a)->next->next->num)
 	{
-		sab(&a);
+		sab(a);
 		ft_putendl("sa");
-		rab(&a);
+		rab(a);
 		ft_putendl("ra");
 	}
 }
 
 void	size5(t_stack *a, t_stack *b)
 {
-	move_num_up(&a, find_smallest(a), get_size(a));
+	move_num_up(&a, find_smallest(a), get_size(a), 'a');
 	pab(&a, &b);
 	ft_putendl("pb");
-	move_num_up(&a, find_smallest(a), get_size(a));
+	move_num_up(&a, find_smallest(a), get_size(a), 'a');
 	pab(&a, &b);
 	ft_putendl("pb");
-	size3(a);
+	size3(&a);
 	pab(&b, &a);
 	pab(&b, &a);
 	ft_putendl("pa\npa");
@@ -80,18 +80,18 @@ void	push_swap(t_stack *a, t_stack *b, int size, int *sort)
 	t_stack	*number;
 
 	if (size == 3)
-		size3(a);
+		size3(&a);
 	else if (size == 5)
 		size5(a, b);
 	else
 	{
 		start = 0;
-		max = size <= 19 ? size : 19;
+		max = size < 19 ? size : 19;
 		counter = 0;
-		while (a->next)
+		while (a)
 		{
 			number = find_min_ops(a, sort, max, start);
-			move_num_up(&a, number, get_size(a));
+			move_num_up(&a, number, get_size(a), 'a');
 			counter++;
 			if (counter % 19 == 0)
 			{
@@ -103,6 +103,7 @@ void	push_swap(t_stack *a, t_stack *b, int size, int *sort)
 		}
 		while (b)
 		{
+			move_num_up(&b, find_biggest(b), get_size(b), 'b');
 			pab(&b, &a);
 			ft_putendl("pa");
 		}
