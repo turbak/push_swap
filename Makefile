@@ -6,12 +6,15 @@ FILES2 =	push_swap.c\
 			write_stacks.c\
 			sort_funcs.c\
 			sort_misc_funcs.c\
-			freeall.c
+			freeall.c\
+			read_funcs.c
 			
 FILES1 = 	checker.c\
 			array_funcs.c\
 			stack.c\
-			write_stacks.c
+			write_stacks.c\
+			read_funcs.c\
+			freeall.c
 
 OBJ1 = $(FILES1:%.c=%.o)
 OBJ2 = $(FILES2:%.c=%.o)

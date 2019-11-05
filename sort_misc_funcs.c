@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:41:25 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/04 17:24:09 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 11:48:05 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@ t_stack *find_min_ops(t_stack *a, int *sort, int max, int start)
     }
     return (number);
 }
-
-//void    sort_b(t_stack *b, t_stack *num)
-//{
-//    
-//}
 
 t_stack *stackcpy(t_stack *a)
 {

@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:13 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/04 16:32:59 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 14:47:34 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP
 # include "libft/libft.h"
 # include <stdio.h>
+# include <limits.h>
 
 typedef struct			s_stack
 {
@@ -36,6 +37,7 @@ int						check_reversed(t_stack *a);
 t_stack					*readtostack(char **av);
 void					die(void);
 void					validate_arr(int *arg, int size);
+int						validate_string(char *str);
 t_stack					*find_biggest(t_stack *b);
 t_stack					*find_smallest(t_stack *a);
 int						get_ptr_pos(t_stack *a, t_stack *num);
@@ -48,6 +50,9 @@ t_stack					*find_num(t_stack *a, int number);
 t_stack					*find_min_ops(t_stack *a, int *sort, int max, int start);
 int						get_size(t_stack *a);
 void					free_stack(t_stack **a);
+void					free_array(char **arr);
 t_stack					*stackcpy(t_stack *a);
+char					**read_to_arr(char **av);
+int						validate_str(char *str);
 
 #endif

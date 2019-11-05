@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:01 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/04 20:16:01 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 15:14:16 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,18 @@ void	push_swap(t_stack *a, t_stack *b, int size, int *sort)
 			ft_putendl("sa");
 		}
 	}
+	else if (size == 4)
+	{
+		move_num_up(&a, find_smallest(a), get_size(a), 'a');
+		pab(&a, &b);
+		ft_putendl("pb");
+		size3(&a);
+	}
 	else if (size == 3)
 		size3(&a);
 	else if (size == 5)
 		size5(a, b);
-	else if (size <= 100)
+	else if (size <= 101)
 	{
 		start = 0;
 		max = size / 5;
@@ -121,7 +128,7 @@ void	push_swap(t_stack *a, t_stack *b, int size, int *sort)
 	else
 	{
 		start = 0;
-		max = size / 15;
+		max = size / 11;
 		counter = 0;
 		while (a)
 		{
@@ -130,8 +137,8 @@ void	push_swap(t_stack *a, t_stack *b, int size, int *sort)
 			counter++;
 			if (counter == max)
 			{
-				start = start + size / 15 > size ? size : start + size / 15;
-				max = max + size / 15 > size ? size : max + size / 15;
+				start = start + size / 11 > size ? size : start + size / 11;
+				max = max + size / 11 > size ? size : max + size / 11;
 			}
 			pab(&a, &b);
 			ft_putendl("pb");
@@ -155,7 +162,7 @@ int	main(int ac, char **av)
 		die();
 	a = readtostack(av);
 	size = get_size(a);
-	sort = sorted_arr(readtoarr(av, size), size);
+	sort = sorted_arr(readtoarr(read_to_arr(av), size), size);
 	push_swap(a, NULL, size, sort);
 	return (0);
 }

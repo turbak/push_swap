@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 17:54:37 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/03 17:58:19 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 14:25:11 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,18 @@ void    free_stack(t_stack **a)
         *a = buf;
     }
     a = NULL;
+}
+
+void    free_array(char **arr)
+{
+    int i;
+
+    i = 0;
+    while (arr[i])
+    {
+        ft_strdel(&arr[i]);
+        i++;
+    }
+    free(arr);
+    arr = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 21:19:41 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/02 21:15:09 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 15:05:00 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,45 +88,45 @@ void	validate_arr(int *arg, int size)
 	}
 }
 
-int		*readtoarr(char **av, int size)
+int		*readtoarr(char **argv, int size)
 {
 	int i;
 	int *arg;
 	
 	arg = (int *)malloc(sizeof(int) * size);
 	i = 0;
-	while (av[i + 1])
+	while (argv[i])
 	{
-		arg[i] = ft_atoi(av[i + 1]);
+		arg[i] = ft_atoi(argv[i]);
 		i++;
 	}
+	free_array(argv);
 	return (arg);
 }
 
 t_stack	*readtostack(char **av)
 {
-	int size;
-	int *arg;
-	int i;
+	char 	**argv;
+	int 	*arg;
+	int		i;
 
-	size = 1;
-	while (av[size])
-	{
-		i = 0;
-		while(av[size][i])
-		{
-			if (!(av[size][i] > '0' || av[size][i] < '9' || av[size][i] == '-'))
-				die();
-			i++;
-		}
-		size++;
-	}
-	arg = (int *)malloc(sizeof(int) * size - 1);
+	argv = read_to_arr(av);
 	i = 0;
-	while (av[i + 1])
+	while (argv[i])
+		i++;
+	arg = (int *)malloc(sizeof(int) * i);
+	i = 0;
+	while (argv[i])
 	{
-		arg[i] = ft_atoi(av[i + 1]);
+		if (!validate_str(argv[i]))
+		{
+			free_array(argv);
+			die();
+		}
+		arg[i] = ft_atoi(argv[i]);
+		printf("[%d]\n", arg[i]);
 		i++;
 	}
-	return (atostack(arg, size - 1));
+	free_array(argv);
+	return (atostack(arg, i));
 }
