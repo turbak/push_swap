@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 21:19:41 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 15:05:00 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 17:30:09 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void die(void)
 	exit(-1);
 }
 
-int		*sorted_arr(int *sort, int size)
+void	sort_arr(int *sort, int size)
 {
 	int i;
 	int j;
@@ -40,7 +40,6 @@ int		*sorted_arr(int *sort, int size)
 		}
 		i++;
 	}
-	return (sort);
 }
 
 t_stack	*atostack(int *arg, int size)
@@ -62,6 +61,7 @@ t_stack	*atostack(int *arg, int size)
 		i++;
 		a->next = NULL;
 	}
+	a->next = NULL;
 	ft_memdel((void **)&arg);
 	return (head);
 }
@@ -101,6 +101,7 @@ int		*readtoarr(char **argv, int size)
 		i++;
 	}
 	free_array(argv);
+	free(argv);
 	return (arg);
 }
 
@@ -121,12 +122,13 @@ t_stack	*readtostack(char **av)
 		if (!validate_str(argv[i]))
 		{
 			free_array(argv);
+			free(argv);
 			die();
 		}
 		arg[i] = ft_atoi(argv[i]);
-		printf("[%d]\n", arg[i]);
 		i++;
 	}
 	free_array(argv);
+	free(argv);
 	return (atostack(arg, i));
 }

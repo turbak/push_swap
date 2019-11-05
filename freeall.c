@@ -6,21 +6,21 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 17:54:37 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 14:25:11 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 17:34:25 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    free_stack(t_stack **a)
+void    free_stack(t_stack *a)
 {
     t_stack *buf;
 
-    while (*a)
+    while (a)
     {
-        buf = (*a)->next;
-        free(*a);
-        *a = buf;
+        buf = a->next;
+        free(a);
+        a = buf;
     }
     a = NULL;
 }
@@ -35,6 +35,4 @@ void    free_array(char **arr)
         ft_strdel(&arr[i]);
         i++;
     }
-    free(arr);
-    arr = NULL;
 }

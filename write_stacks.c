@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 17:58:33 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/01 21:35:47 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 16:41:09 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	check(t_stack *a)
 {
+	if (a && !a->next)
+		return (1);
 	while (a->next)
 	{
 		if (a->num > a->next->num)
@@ -21,6 +23,20 @@ int	check(t_stack *a)
 		a = a->next;
 	}
 	return (1);
+}
+
+
+int	get_size(t_stack *a)
+{
+	int counter;
+
+	counter = 0;
+	while (a)
+	{
+		a = a->next;
+		counter++;
+	}
+	return (counter);
 }
 
 int	check_reversed(t_stack *a)

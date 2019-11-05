@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:59:07 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/04 17:31:04 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 17:34:44 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int			count_operations(t_stack *a, int num, int size)
 			ops++;
 		}
 	}
-	free_stack(&cpy);
+	free_stack(cpy);
 	return (ops);
 }
 

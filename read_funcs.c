@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 12:10:53 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 15:07:45 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 17:14:46 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,12 @@ char **read_to_arr(char **av)
 			i++;
 		}
 		free_array(argv);
+		free(argv);
 		size++;
 	}
-	return (ft_strsplit(str, ' '));
+	argv = ft_strsplit(str, ' ');
+	ft_strdel(&str);
+	return (argv);
 }
 
 int	validate_str(char *str)
@@ -51,7 +54,7 @@ int	validate_str(char *str)
 			return (0);
 	while (str[i])
 	{
-		if (str[i] <= '0' && str[i] >= '9')
+		if (str[i] < '0' || str[i] > '9')
 			return (0);
 		i++;
 	}

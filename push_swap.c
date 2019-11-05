@@ -6,24 +6,11 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:01 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 15:14:16 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 17:34:41 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	get_size(t_stack *a)
-{
-	int counter;
-
-	counter = 0;
-	while (a)
-	{
-		a = a->next;
-		counter++;
-	}
-	return (counter);
-}
 
 void	size3(t_stack **a)
 {
@@ -162,7 +149,10 @@ int	main(int ac, char **av)
 		die();
 	a = readtostack(av);
 	size = get_size(a);
-	sort = sorted_arr(readtoarr(read_to_arr(av), size), size);
+	sort = readtoarr(read_to_arr(av), size);
+	sort_arr(sort, size);
 	push_swap(a, NULL, size, sort);
+	ft_memdel((void**)&sort);
+	free_stack(a);
 	return (0);
 }
