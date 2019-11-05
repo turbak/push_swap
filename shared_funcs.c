@@ -1,54 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   freeall.c                                          :+:      :+:    :+:   */
+/*   shared_funcs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/03 17:54:37 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 19:30:53 by cauranus         ###   ########.fr       */
+/*   Created: 2019/11/05 19:34:56 by cauranus          #+#    #+#             */
+/*   Updated: 2019/11/05 19:59:08 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_stack(t_stack *a)
+void		die(void)
+{
+	write(2, "Error\n", 7);
+	exit(-1);
+}
+
+void		sab(t_stack **a)
 {
 	t_stack *buf;
 
-	while (a)
-	{
-		buf = a->next;
-		free(a);
-		a = buf;
-	}
-	a = NULL;
+	if (!(*a) || !(*a)->next)
+		return ;
+	buf = (*a)->next;
+	(*a)->next = (*a)->next->next;
+	buf->next = (*a);
+	(*a) = buf;
 }
 
-void	free_array(char **arr)
+void		ss(t_stack **a, t_stack **b)
 {
-	int i;
-
-	i = 0;
-	while (arr[i])
-	{
-		ft_strdel(&arr[i]);
-		i++;
-	}
-}
-
-void	free_exec(char **str, t_stack *a, t_stack *b)
-{
-	int i;
-
-	i = 0;
-	if (a)
-		free_stack(a);
-	if (b)
-		free_stack(b);
-	while (str[i])
-	{
-		ft_strdel(&str[i]);
-		i++;
-	}
+	sab(a);
+	sab(b);
 }

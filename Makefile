@@ -3,18 +3,21 @@ NAME1 = checker
 FILES2 =	push_swap.c\
 			array_funcs.c\
 			stack.c\
-			write_stacks.c\
+			other_stack_funcs.c\
 			sort_funcs.c\
 			sort_misc_funcs.c\
 			freeall.c\
-			read_funcs.c
+			read_funcs.c\
+			shared_funcs.c\
+			hardcoded_algo.c
 			
 FILES1 = 	checker.c\
 			array_funcs.c\
 			stack.c\
-			write_stacks.c\
+			other_stack_funcs.c\
 			read_funcs.c\
-			freeall.c
+			freeall.c\
+			shared_funcs.c
 
 OBJ1 = $(FILES1:%.c=%.o)
 OBJ2 = $(FILES2:%.c=%.o)

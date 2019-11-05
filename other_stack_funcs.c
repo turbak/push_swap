@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_stacks.c                                     :+:      :+:    :+:   */
+/*   other_stack_funcs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 17:58:33 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 16:41:09 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 19:45:37 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check(t_stack *a)
+int		check(t_stack *a)
 {
-	if (a && !a->next)
+	if (!a)
+		return (0);
+	else if (a && !a->next)
 		return (1);
 	while (a->next)
 	{
@@ -25,8 +27,7 @@ int	check(t_stack *a)
 	return (1);
 }
 
-
-int	get_size(t_stack *a)
+int		get_size(t_stack *a)
 {
 	int counter;
 
@@ -39,7 +40,7 @@ int	get_size(t_stack *a)
 	return (counter);
 }
 
-int	check_reversed(t_stack *a)
+int		check_reversed(t_stack *a)
 {
 	while (a->next)
 	{
@@ -50,27 +51,30 @@ int	check_reversed(t_stack *a)
 	return (1);
 }
 
-
-void	write_stacks(t_stack *a, t_stack *b)
+t_stack	*find_biggest(t_stack *b)
 {
-	while (a || b)
+	t_stack *biggest;
+
+	biggest = b;
+	while (b)
 	{
-		if (a && b)
-		{
-			printf("%d %d\n", a->num, b->num);
-			a = a->next;
-			b = b->next;
-		}
-		else if (a && !b)
-		{
-			printf("%d  \n", a->num);
-			a = a->next;
-		}
-		else if (!a && b)
-		{
-			printf("   %d\n", b->num);
-			b = b->next;
-		}
+		if (b->num > biggest->num)
+			biggest = b;
+		b = b->next;
 	}
-	printf("- -\na b\n");
+	return (biggest);
+}
+
+t_stack	*find_smallest(t_stack *a)
+{
+	t_stack *smallest;
+
+	smallest = a;
+	while (a)
+	{
+		if (a->num < smallest->num)
+			smallest = a;
+		a = a->next;
+	}
+	return (smallest);
 }

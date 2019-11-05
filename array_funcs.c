@@ -6,19 +6,13 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 21:19:41 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 17:30:09 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/05 19:35:37 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void die(void)
-{
-	write(2, "Error\n", 7);
-	exit(-1);
-}
-
-void	sort_arr(int *sort, int size)
+void		sort_arr(int *sort, int size)
 {
 	int i;
 	int j;
@@ -31,7 +25,7 @@ void	sort_arr(int *sort, int size)
 		while (j < size)
 		{
 			if (sort[i] > sort[j])
-			{	
+			{
 				buf = sort[i];
 				sort[i] = sort[j];
 				sort[j] = buf;
@@ -42,10 +36,10 @@ void	sort_arr(int *sort, int size)
 	}
 }
 
-t_stack	*atostack(int *arg, int size)
+t_stack		*atostack(int *arg, int size)
 {
-	t_stack *a;
-	t_stack *head;
+	t_stack	*a;
+	t_stack	*head;
 	int		i;
 
 	validate_arr(arg, size);
@@ -66,7 +60,7 @@ t_stack	*atostack(int *arg, int size)
 	return (head);
 }
 
-void	validate_arr(int *arg, int size)
+void		validate_arr(int *arg, int size)
 {
 	int i;
 	int j;
@@ -75,11 +69,11 @@ void	validate_arr(int *arg, int size)
 	while (i < size)
 	{
 		j = 0;
-		while(j < size)
+		while (j < size)
 		{
 			if (arg[i] == arg[j] && j != i)
 			{
-				ft_memdel((void**)&arg);
+				ft_memdel((void **)&arg);
 				die();
 			}
 			j++;
@@ -88,11 +82,11 @@ void	validate_arr(int *arg, int size)
 	}
 }
 
-int		*readtoarr(char **argv, int size)
+int			*readtoarr(char **argv, int size)
 {
 	int i;
 	int *arg;
-	
+
 	arg = (int *)malloc(sizeof(int) * size);
 	i = 0;
 	while (argv[i])
@@ -105,10 +99,10 @@ int		*readtoarr(char **argv, int size)
 	return (arg);
 }
 
-t_stack	*readtostack(char **av)
+t_stack		*readtostack(char **av)
 {
-	char 	**argv;
-	int 	*arg;
+	char	**argv;
+	int		*arg;
 	int		i;
 
 	argv = read_to_arr(av);
@@ -123,6 +117,7 @@ t_stack	*readtostack(char **av)
 		{
 			free_array(argv);
 			free(argv);
+			ft_memdel((void **)&arg);
 			die();
 		}
 		arg[i] = ft_atoi(argv[i]);
