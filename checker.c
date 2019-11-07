@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:49:55 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 20:42:49 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/07 15:47:45 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int			main(int ac, char **av)
 		ft_swapfree((void **)&str, ft_strjoin(str, "\n"));
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	if (exec(str, a, NULL))
 		write(1, "OK\n", 3);
 	else

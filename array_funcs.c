@@ -6,18 +6,20 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 21:19:41 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 19:35:37 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/07 14:29:59 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		sort_arr(int *sort, int size)
+void		sort_arr(int **sor, int size)
 {
 	int i;
 	int j;
 	int buf;
+	int *sort;
 
+	sort = *sor;
 	i = 0;
 	while (i < size - 1)
 	{
@@ -92,9 +94,9 @@ int			*readtoarr(char **argv, int size)
 	while (argv[i])
 	{
 		arg[i] = ft_atoi(argv[i]);
+		ft_strdel(&argv[i]);
 		i++;
 	}
-	free_array(argv);
 	free(argv);
 	return (arg);
 }
@@ -115,15 +117,17 @@ t_stack		*readtostack(char **av)
 	{
 		if (!validate_str(argv[i]))
 		{
-			free_array(argv);
+			while (argv[i])
+				ft_strdel(&argv[i++]);
 			free(argv);
 			ft_memdel((void **)&arg);
 			die();
 		}
 		arg[i] = ft_atoi(argv[i]);
+		ft_memdel((void**)&argv[i]);
 		i++;
 	}
-	free_array(argv);
 	free(argv);
+	argv = NULL;
 	return (atostack(arg, i));
 }

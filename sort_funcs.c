@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:59:07 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 20:32:23 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/07 13:49:00 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,12 @@ int				count_operations(t_stack *a, int num, int size)
 	cpy = stackcpy(a);
 	numb = find_num(cpy, num);
 	if (numb == NULL)
+	{
+		free_stack(&cpy);
 		return (-1);
+	}
 	ops += count_ops2(&cpy, numb, ops, size);
-	free_stack(cpy);
+	free_stack(&cpy);
 	return (ops);
 }
 

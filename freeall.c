@@ -6,35 +6,23 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 17:54:37 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 19:30:53 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/07 13:28:36 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_stack(t_stack *a)
+void	free_stack(t_stack **a)
 {
 	t_stack *buf;
 
-	while (a)
+	while (*a)
 	{
-		buf = a->next;
-		free(a);
-		a = buf;
+		buf = (*a)->next;
+		free(*a);
+		*a = buf;
 	}
-	a = NULL;
-}
-
-void	free_array(char **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i])
-	{
-		ft_strdel(&arr[i]);
-		i++;
-	}
+	*a = NULL;
 }
 
 void	free_exec(char **str, t_stack *a, t_stack *b)
@@ -43,9 +31,9 @@ void	free_exec(char **str, t_stack *a, t_stack *b)
 
 	i = 0;
 	if (a)
-		free_stack(a);
+		free_stack(&a);
 	if (b)
-		free_stack(b);
+		free_stack(&b);
 	while (str[i])
 	{
 		ft_strdel(&str[i]);

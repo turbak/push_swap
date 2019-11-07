@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 12:10:53 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 19:26:06 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/07 15:11:47 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,13 @@ char	**read_to_arr(char **av)
 		while (argv[i])
 		{
 			ft_swapfree((void **)&str, ft_strjoin(str, argv[i]));
-			ft_swapfree((void **)&str, ft_strjoin(str, " "));
+			if (av[size + 1])
+				ft_swapfree((void **)&str, ft_strjoin(str, " "));
+			ft_strdel(&argv[i]);
 			i++;
 		}
-		free_array(argv);
 		free(argv);
+		argv = NULL;
 		size++;
 	}
 	argv = ft_strsplit(str, ' ');

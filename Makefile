@@ -10,7 +10,7 @@ FILES2 =	push_swap.c\
 			read_funcs.c\
 			shared_funcs.c\
 			hardcoded_algo.c
-			
+
 FILES1 = 	checker.c\
 			array_funcs.c\
 			stack.c\
@@ -26,10 +26,6 @@ HEADER		= push_swap.h
 
 all: $(NAME2) $(NAME1)
 
-push_swap: $(NAME2) 
-
-checker: $(NAME1)
-
 .PHONY: clean fclean re
 
 $(NAME1): $(OBJ1)
@@ -41,7 +37,7 @@ $(NAME2): $(OBJ2)
 	gcc -o $(NAME2) $(OBJ2) ./libft/libft.a
 
 %.o: %.c $(HEADER)
-	gcc -I . $(FLAGS) $< -c -o $@
+	gcc -I .  $< -c -o $@
 
 clean:
 	rm -f $(OBJ1) $(OBJ2) && $(MAKE) clean -C ./libft

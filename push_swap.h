@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:13 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 20:29:56 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/07 14:05:21 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,14 @@ int						get_ptr_pos(t_stack *a, t_stack *num);
 void					move_num_up(t_stack **a, t_stack *num,
 						int size, char stack);
 void					push_swap(t_stack *a, t_stack *b, int size, int *sort);
-void					sort_arr(int *arg, int size);
+void					sort_arr(int **arg, int size);
 int						*readtoarr(char **av, int size);
 int						count_operations(t_stack *a, int num, int size);
 t_stack					*find_num(t_stack *a, int number);
 t_stack					*find_min_ops(t_stack *a, int *sort,
 						int max, int start);
 int						get_size(t_stack *a);
-void					free_stack(t_stack *a);
-void					free_array(char **arr);
+void					free_stack(t_stack **a);
 void					free_exec(char **str, t_stack *a, t_stack *b);
 t_stack					*stackcpy(t_stack *a);
 char					**read_to_arr(char **av);
