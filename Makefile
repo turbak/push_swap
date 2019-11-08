@@ -1,5 +1,6 @@
 NAME2 = push_swap
 NAME1 = checker
+LIBFT = ./libft/libft.a
 FILES2 =	push_swap.c\
 			array_funcs.c\
 			stack.c\
@@ -19,25 +20,24 @@ FILES1 = 	checker.c\
 			freeall.c\
 			shared_funcs.c
 
-OBJ1 = $(FILES1:%.c=%.o)
-OBJ2 = $(FILES2:%.c=%.o)
+OBJ1 = $(patsubst %.c, %.o, $(FILES1))
+OBJ2 = $(patsubst %.c, %.o, $(FILES2))
 FLAGS		=  -Wall -Werror -Wextra
 HEADER		= push_swap.h
 
 all: $(NAME2) $(NAME1)
 
-.PHONY: clean fclean re
+$(LIBFT):
+	$(MAKE) -sC libft all
 
 $(NAME1): $(OBJ1)
-	$(MAKE) -C libft all
-	gcc -o $(NAME1) $(OBJ1) ./libft/libft.a
+	gcc -o $(NAME1) $(OBJ1) $(LIBFT)
 
 $(NAME2): $(OBJ2)
-	$(MAKE) -C libft all
-	gcc -o $(NAME2) $(OBJ2) ./libft/libft.a
+	gcc -o $(NAME2) $(OBJ2) $(LIBFT)
 
-%.o: %.c $(HEADER)
-	gcc -I .  $< -c -o $@
+%.o: %.c $(HEADER) $(LIBFT)
+	gcc -I . -c $< -o $@
 
 clean:
 	rm -f $(OBJ1) $(OBJ2) && $(MAKE) clean -C ./libft
@@ -46,3 +46,5 @@ fclean:clean
 	rm -f $(NAME1) $(NAME2) && $(MAKE) fclean -C ./libft
 
 re: fclean all
+
+.PHONY: clean fclean re all
