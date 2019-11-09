@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:08:15 by cauranus          #+#    #+#             */
-/*   Updated: 2019/09/20 19:30:49 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/09 15:01:10 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_putendl(char const *s)
 	size_t i;
 
 	i = 0;
+
 	while (s[i])
 		i++;
 	write(1, s, i);

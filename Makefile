@@ -13,7 +13,9 @@ FILES3 = 	array_funcs.c\
 			other_stack_funcs.c\
 			read_funcs.c\
 			freeall.c\
-			shared_funcs.c
+			shared_funcs.c\
+			write_stacks.c\
+			write_bonus.c
 
 OBJ1 = $(patsubst %.c, %.o, $(FILES1))
 OBJ2 = $(patsubst %.c, %.o, $(FILES2))

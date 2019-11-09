@@ -6,11 +6,12 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 19:34:56 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/05 19:59:08 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/09 18:00:07 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void		die(void)
 {

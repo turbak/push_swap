@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:59:07 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/07 13:49:00 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/09 17:03:58 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,29 +71,29 @@ int				count_operations(t_stack *a, int num, int size)
 	return (ops);
 }
 
-static void		rrab_up(t_stack **a, t_stack *num, char stack)
+static void		rrab_up(t_stack **a, t_stack *num, t_flags *flags)
 {
 	while (*a != num)
 	{
 		if ((*a)->next == num)
 		{
 			sab(a);
-			ft_putendl(stack == 'a' ? "sa" : "sb");
+			write_stacks(*a, *flags->b, flags, flags->stack == 'a' ? 1 : 2);
 		}
 		else
 		{
 			rrab(a);
-			ft_putendl(stack == 'a' ? "rra" : "rrb");
+			write_stacks(*a, *flags->b, flags, flags->stack == 'a' ? 9 : 10);
 		}
 	}
 }
 
-void			move_num_up(t_stack **a, t_stack *num, int size, char stack)
+void			move_num_up(t_stack **a, t_stack *num, int size, t_flags *flags)
 {
 	if (!(*a)->next)
 		return ;
 	if (get_ptr_pos(*a, num) > size / 2)
-		rrab_up(a, num, stack);
+		rrab_up(a, num, flags);
 	else
 	{
 		while (*a != num)
@@ -101,12 +101,12 @@ void			move_num_up(t_stack **a, t_stack *num, int size, char stack)
 			if ((*a)->next == num)
 			{
 				sab(a);
-				ft_putendl(stack == 'a' ? "sa" : "sb");
+				write_stacks(*a, *flags->b, flags, flags->stack == 'a' ? 1 : 2);
 			}
 			else
 			{
 				rab(a);
-				ft_putendl(stack == 'a' ? "ra" : "rb");
+				write_stacks(*a, *flags->b, flags, flags->stack == 'a' ? 6 : 7);
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 21:19:41 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/07 14:29:59 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/09 13:46:58 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,14 @@ int			*readtoarr(char **argv, int size)
 	return (arg);
 }
 
-t_stack		*readtostack(char **av)
+t_stack		*readtostack(char **av, t_flags *flags)
 {
 	char	**argv;
 	int		*arg;
 	int		i;
 
-	argv = read_to_arr(av);
+	get_flags(av, flags);
+	argv = read_to_arr(av, flags);
 	i = 0;
 	while (argv[i])
 		i++;

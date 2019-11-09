@@ -6,23 +6,23 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:01 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/07 15:46:37 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/09 18:13:19 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	clear_b(t_stack **a, t_stack **b)
+static void	clear_b(t_stack **a, t_stack **b, t_flags *flags)
 {
 	while (*b)
 	{
-		move_num_up(b, find_biggest(*b), get_size(*b), 'b');
+		move_num_up(b, find_biggest(*b), get_size(*b), flags);
 		pab(b, a);
-		ft_putendl("pa");
+		write_stacks(*a, *b, flags, 4);
 	}
 }
 
-static void	less_100(t_stack **a, t_stack **b, int size, int *sort)
+static void	less_100(t_stack **a, t_stack **b, int size, t_flags *flags)
 {
 	int		start;
 	int		max;
@@ -34,8 +34,9 @@ static void	less_100(t_stack **a, t_stack **b, int size, int *sort)
 	counter = 0;
 	while (*a)
 	{
-		number = find_min_ops(*a, sort, max, start);
-		move_num_up(a, number, get_size(*a), 'a');
+		flags->stack = 'a';
+		number = find_min_ops(*a, flags->sort, max, start);
+		move_num_up(a, number, get_size(*a), flags);
 		counter++;
 		if (counter == max)
 		{
@@ -43,12 +44,13 @@ static void	less_100(t_stack **a, t_stack **b, int size, int *sort)
 			max = max + size / 5 > size ? size : max + size / 5;
 		}
 		pab(a, b);
-		ft_putendl("pb");
+		write_stacks(*a, *b, flags, 5);
 	}
-	clear_b(a, b);
+	flags->stack = 'b';
+	clear_b(a, b, flags);
 }
 
-static void	more(t_stack **a, t_stack **b, int size, int *sort)
+static void	more(t_stack **a, t_stack **b, int size, t_flags *flags)
 {
 	int		start;
 	int		max;
@@ -60,8 +62,9 @@ static void	more(t_stack **a, t_stack **b, int size, int *sort)
 	counter = 0;
 	while (*a)
 	{
-		number = find_min_ops(*a, sort, max, start);
-		move_num_up(a, number, get_size(*a), 'a');
+		flags->stack = 'a';
+		number = find_min_ops(*a, flags->sort, max, start);
+		move_num_up(a, number, get_size(*a), flags);
 		counter++;
 		if (counter == max)
 		{
@@ -69,19 +72,21 @@ static void	more(t_stack **a, t_stack **b, int size, int *sort)
 			max = max + size / 11 > size ? size : max + size / 11;
 		}
 		pab(a, b);
-		ft_putendl("pb");
+		write_stacks(*a, *b, flags, 5);
 	}
-	clear_b(a, b);
+	flags->stack = 'b';
+	clear_b(a, b, flags);
 }
 
-void		push_swap(t_stack *a, t_stack *b, int size, int *sort)
+void		push_swap(t_stack *a, t_stack *b, int size, t_flags *flags)
 {
+	flags->b = &b;
 	if (size <= 5 || check(a))
-		less_5(&a, &b, size);
+		less_5(&a, &b, size, flags);
 	else if (size <= 101)
-		less_100(&a, &b, size, sort);
+		less_100(&a, &b, size, flags);
 	else
-		more(&a, &b, size, sort);
+		more(&a, &b, size, flags);
 	free_stack(&a);
 	a = NULL;
 }
@@ -90,15 +95,16 @@ int			main(int ac, char **av)
 {
 	t_stack	*a;
 	int		size;
-	int		*sort;
+	t_flags	flags;
 
 	if (ac < 2)
 		die();
-	a = readtostack(av);
+	flags.stack = 'a';
+	a = readtostack(av, &flags);
 	size = get_size(a);
-	sort = readtoarr(read_to_arr(av), size);
-	sort_arr(&sort, size);
-	push_swap(a, NULL, size, sort);
-	ft_memdel((void **)&sort);
+	flags.sort = readtoarr(read_to_arr(av, &flags), size);
+	sort_arr(&flags.sort, size);
+	push_swap(a, NULL, size, &flags);
+	ft_memdel((void **)&flags.sort);
 	return (0);
 }
