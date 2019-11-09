@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 12:10:53 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/09 18:13:42 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/09 19:00:27 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,17 @@ void	get_flags(char **av, t_flags *flags)
 		flags->c = '1';
 		flags->v = '\0';
 	}
+	else if (ft_strequ(av[1], "-w"))
+	{
+		flags->w = '1';
+		flags->v = '\0';
+		flags->c = '\0';
+	}
 	else
 	{
 		flags->v = '\0';
 		flags->c = '\0';
+		flags->w = '\0';
 	}
 }
 
@@ -66,7 +73,7 @@ char	**read_to_arr(char **av, t_flags *flags)
 	int		i;
 	char	**argv;
 
-	size = (flags->v || flags->c ? 2 : 1);
+	size = (flags->v || flags->w || flags->c ? 2 : 1);
 	str = ft_strnew(0);
 	while (av[size])
 	{

@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:01 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/09 18:13:19 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/09 18:53:33 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,12 @@ int			main(int ac, char **av)
 
 	if (ac < 2)
 		die();
+	flags.fd = 1;
 	flags.stack = 'a';
 	a = readtostack(av, &flags);
+	if (flags.w)
+		flags.fd = open("tmp", O_WRONLY | O_CREAT |
+		O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	size = get_size(a);
 	flags.sort = readtoarr(read_to_arr(av, &flags), size);
 	sort_arr(&flags.sort, size);

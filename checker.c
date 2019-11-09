@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:49:55 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/09 18:20:46 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/09 18:57:15 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,12 @@ int			main(int ac, char **av)
 	t_flags	flags;
 
 	flags.v = '\0';
+	flags.fd = 0;
 	if (ac < 2)
 		return (0);
 	a = readtostack(av, &flags);
 	str = ft_strnew(0);
-	while (get_next_line(0, &line) > 0)
+	while (get_next_line(flags.fd, &line) > 0)
 	{
 		ft_swapfree((void **)&str, ft_strjoin(str, line));
 		ft_swapfree((void **)&str, ft_strjoin(str, "\n"));
