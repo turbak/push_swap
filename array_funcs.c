@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 21:19:41 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/09 18:56:33 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/09 19:44:19 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,22 +113,19 @@ t_stack		*readtostack(char **av, t_flags *flags)
 	while (argv[i])
 		i++;
 	arg = (int *)malloc(sizeof(int) * i);
-	i = 0;
-	while (argv[i])
+	i = -1;
+	while (argv[++i])
 	{
 		if (!validate_str(argv[i]))
 		{
 			while (argv[i])
 				ft_strdel(&argv[i++]);
 			free(argv);
-			ft_memdel((void **)&arg);
 			die();
 		}
 		arg[i] = ft_atoi(argv[i]);
 		ft_memdel((void**)&argv[i]);
-		i++;
 	}
 	free(argv);
-	argv = NULL;
 	return (atostack(arg, i));
 }
