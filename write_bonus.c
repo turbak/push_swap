@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 18:06:24 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/09 18:18:45 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/10 16:27:15 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,26 @@ static void	write_bonus_2(t_stack *a, int op, t_flags *flags)
 	(op == 3 && flags->flag < 4)) && flags->c)
 	{
 		flags->flag++;
-		write(1, RED, 6);
+		write(flags->fd, RED, 6);
 	}
 	if (op == 4 && !flags->flag && flags->c)
 	{
 		flags->flag++;
-		write(1, BLU, 6);
+		write(flags->fd, BLU, 6);
 	}
 	if ((!a->next && flags->c && op == 6) ||
 	(!a->next && op == 8 && flags->c))
-		write(1, CYN, 6);
+		write(flags->fd, CYN, 6);
 	if ((op == 9 && flags->c && !flags->flag) ||
 	(op == 11 && flags->c && flags->flag < 2))
 	{
 		flags->flag++;
-		write(1, LGN, 6);
+		write(flags->fd, LGN, 6);
 	}
-	ft_putnbr(a->num);
+	ft_putnbr_fd(a->num, flags->fd);
 	if (flags->c)
-		write(1, WHT, 6);
-	write(1, "          ", 10 - ft_numlen(a->num));
+		write(flags->fd, WHT, 6);
+	write(flags->fd, "          ", 10 - ft_numlen(a->num));
 }
 
 static void	write_bonus_3(t_stack *b, int op, t_flags *flags)
@@ -46,26 +46,26 @@ static void	write_bonus_3(t_stack *b, int op, t_flags *flags)
 	(op == 3 && flags->flag < 4)) && flags->c)
 	{
 		flags->flag++;
-		write(1, GRN, 6);
+		write(flags->fd, GRN, 6);
 	}
 	if (op == 5 && !flags->flag && flags->c)
 	{
 		flags->flag++;
-		write(1, MAG, 6);
+		write(flags->fd, MAG, 6);
 	}
 	if ((!b->next && flags->c && op == 7) ||
 	(!b->next && op == 8 && flags->c))
-		write(1, LCN, 6);
+		write(flags->fd, LCN, 6);
 	if ((op == 10 && flags->c && !flags->flag) ||
 	(op == 11 && flags->c && flags->flag < 2))
 	{
 		flags->flag++;
-		write(1, LYL, 6);
+		write(flags->fd, LYL, 6);
 	}
-	ft_putnbr(b->num);
+	ft_putnbr_fd(b->num, flags->fd);
 	if (flags->c)
-		write(1, WHT, 6);
-	ft_putchar('\n');
+		write(flags->fd, WHT, 6);
+	ft_putchar_fd('\n', flags->fd);
 }
 
 static void	write_bonus_4(t_stack *a, int op, t_flags *flags)
@@ -74,26 +74,26 @@ static void	write_bonus_4(t_stack *a, int op, t_flags *flags)
 	(op == 3 && flags->flag < 4)) && flags->c)
 	{
 		flags->flag++;
-		write(1, RED, 6);
+		write(flags->fd, RED, 6);
 	}
 	if (op == 4 && !flags->flag && flags->c)
 	{
 		flags->flag++;
-		write(1, BLU, 6);
+		write(flags->fd, BLU, 6);
 	}
 	if ((!a->next && flags->c && op == 6) ||
 	(!a->next && op == 8 && flags->c))
-		write(1, CYN, 6);
+		write(flags->fd, CYN, 6);
 	if ((op == 9 && flags->c && !flags->flag) ||
 	(op == 11 && flags->c && flags->flag < 2))
 	{
 		flags->flag++;
-		write(1, LGN, 6);
+		write(flags->fd, LGN, 6);
 	}
-	ft_putnbr(a->num);
+	ft_putnbr_fd(a->num, flags->fd);
 	if (flags->c)
-		write(1, WHT, 6);
-	ft_putstr("\n");
+		write(flags->fd, WHT, 6);
+	ft_putstr_fd("\n", flags->fd);
 }
 
 static void	write_bonus_5(t_stack *b, int op, t_flags *flags)
@@ -103,32 +103,32 @@ static void	write_bonus_5(t_stack *b, int op, t_flags *flags)
 	(op == 3 && flags->flag < 4)) && flags->c)
 	{
 		flags->flag++;
-		write(1, GRN, 6);
+		write(flags->fd, GRN, 6);
 	}
 	if (op == 5 && !flags->flag && flags->c)
 	{
 		flags->flag++;
-		write(1, MAG, 6);
+		write(flags->fd, MAG, 6);
 	}
 	if ((!b->next && flags->c && op == 7) ||
 	(!b->next && op == 8 && flags->c))
-		write(1, LCN, 6);
+		write(flags->fd, LCN, 6);
 	if ((op == 10 && flags->c && !flags->flag) ||
 	(op == 11 && flags->c && flags->flag < 2))
 	{
 		flags->flag++;
-		write(1, LYL, 6);
+		write(flags->fd, LYL, 6);
 	}
-	ft_putnbr(b->num);
+	ft_putnbr_fd(b->num, flags->fd);
 	if (flags->c)
-		write(1, WHT, 6);
-	ft_putchar('\n');
+		write(flags->fd, WHT, 6);
+	ft_putchar_fd('\n', flags->fd);
 }
 
 void		write_bonus(t_stack *a, t_stack *b, int op, t_flags *flags)
 {
 	flags->flag = 0;
-	ft_putchar('\n');
+	ft_putchar_fd('\n', flags->fd);
 	while (a || b)
 	{
 		if (a && b)
@@ -149,5 +149,5 @@ void		write_bonus(t_stack *a, t_stack *b, int op, t_flags *flags)
 			b = b->next;
 		}
 	}
-	ft_putstr("-          -\na          b\n\n");
+	ft_putstr_fd("-          -\na          b\n\n", flags->fd);
 }

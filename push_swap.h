@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:13 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/09 18:49:01 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/10 19:22:00 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct			s_flags
 {
 	char				v;
 	char				c;
-	char				r;
 	char				w;
 	char				stack;
 	int					flag;

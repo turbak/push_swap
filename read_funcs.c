@@ -6,13 +6,13 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 12:10:53 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/09 19:00:27 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/10 19:27:17 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	ft_atol(const char *str)
+long		ft_atol(const char *str)
 {
 	long	num;
 	int		neg;
@@ -38,8 +38,33 @@ long	ft_atol(const char *str)
 	return (neg ? (-1 * (int)num) : (int)num);
 }
 
-void	get_flags(char **av, t_flags *flags)
+static void	get_flags2(char **av, t_flags *flags)
 {
+	if (ft_strequ(av[1], "-vc") || ft_strequ(av[1], "-cv"))
+	{
+		flags->c = '1';
+		flags->v = '1';
+	}
+	else if (ft_strequ(av[1], "-c"))
+		flags->c = '1';
+	else if (ft_strequ(av[1], "-w"))
+		flags->w = '1';
+	else if (ft_strequ(av[1], "-wv") || ft_strequ(av[1], "-vw"))
+	{
+		flags->c = '1';
+		flags->w = '1';
+	}
+	else if (ft_strequ(av[1], "-c"))
+		flags->c = '1';
+	else if (ft_strequ(av[1], "-w"))
+		flags->w = '1';
+}
+
+void		get_flags(char **av, t_flags *flags)
+{
+	flags->v = '\0';
+	flags->c = '\0';
+	flags->w = '\0';
 	if (ft_strequ(av[1], "-v"))
 		flags->v = '1';
 	else if (ft_strequ(av[1], "-vc") || ft_strequ(av[1], "-cv"))
@@ -47,26 +72,16 @@ void	get_flags(char **av, t_flags *flags)
 		flags->c = '1';
 		flags->v = '1';
 	}
-	else if (ft_strequ(av[1], "-c"))
+	else if (ft_strequ(av[1], "-wv") || ft_strequ(av[1], "-vw"))
 	{
-		flags->c = '1';
-		flags->v = '\0';
-	}
-	else if (ft_strequ(av[1], "-w"))
-	{
+		flags->v = '1';
 		flags->w = '1';
-		flags->v = '\0';
-		flags->c = '\0';
 	}
 	else
-	{
-		flags->v = '\0';
-		flags->c = '\0';
-		flags->w = '\0';
-	}
+		get_flags2(av, flags);
 }
 
-char	**read_to_arr(char **av, t_flags *flags)
+char		**read_to_arr(char **av, t_flags *flags)
 {
 	char	*str;
 	int		size;
@@ -82,8 +97,7 @@ char	**read_to_arr(char **av, t_flags *flags)
 		while (argv[++i])
 		{
 			ft_swapfree((void **)&str, ft_strjoin(str, argv[i]));
-			if (av[size + 1])
-				ft_swapfree((void **)&str, ft_strjoin(str, " "));
+			ft_swapfree((void **)&str, ft_strjoin(str, " "));
 			ft_strdel(&argv[i]);
 		}
 		free(argv);
@@ -95,7 +109,7 @@ char	**read_to_arr(char **av, t_flags *flags)
 	return (argv);
 }
 
-int		validate_str(char *str)
+int			validate_str(char *str)
 {
 	int i;
 

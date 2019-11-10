@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:49:55 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/09 18:57:15 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/10 19:27:28 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int			main(int ac, char **av)
 	char	*str;
 	t_flags	flags;
 
-	flags.v = '\0';
 	flags.fd = 0;
 	if (ac < 2)
 		return (0);

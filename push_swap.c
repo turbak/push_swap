@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:01 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/09 19:15:14 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/10 19:26:56 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int			main(int ac, char **av)
 	flags.stack = 'a';
 	a = readtostack(av, &flags);
 	if (flags.w)
-		flags.fd = open("operations.txt", O_WRONLY | O_CREAT |
+		flags.fd = open("operations", O_WRONLY | O_CREAT |
 		O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	size = get_size(a);
 	flags.sort = readtoarr(read_to_arr(av, &flags), size);
