@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:01 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/10 19:26:56 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/11 19:34:10 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	clear_b(t_stack **a, t_stack **b, t_flags *flags)
 	{
 		move_num_up(b, find_biggest(*b), get_size(*b), flags);
 		pab(b, a);
-		write_stacks(*a, *b, flags, 4);
+		write_stacks(*flags->a, *flags->b, flags, 4);
 	}
 }
 
@@ -81,6 +81,7 @@ static void	more(t_stack **a, t_stack **b, int size, t_flags *flags)
 void		push_swap(t_stack *a, t_stack *b, int size, t_flags *flags)
 {
 	flags->b = &b;
+	flags->a = &a;
 	if (size <= 5 || check(a))
 		less_5(&a, &b, size, flags);
 	else if (size <= 101)
@@ -98,7 +99,7 @@ int			main(int ac, char **av)
 	t_flags	flags;
 
 	if (ac < 2)
-		die();
+		return (0);
 	flags.fd = 1;
 	flags.stack = 'a';
 	a = readtostack(av, &flags);

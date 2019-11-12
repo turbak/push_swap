@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:59:07 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/09 17:03:58 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/11 19:34:51 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,12 @@ void			move_num_up(t_stack **a, t_stack *num, int size, t_flags *flags)
 			if ((*a)->next == num)
 			{
 				sab(a);
-				write_stacks(*a, *flags->b, flags, flags->stack == 'a' ? 1 : 2);
+				write_stacks(*flags->a, *flags->b, flags, flags->stack == 'a' ? 1 : 2);
 			}
 			else
 			{
 				rab(a);
-				write_stacks(*a, *flags->b, flags, flags->stack == 'a' ? 6 : 7);
+				write_stacks(*flags->a, *flags->b, flags, flags->stack == 'a' ? 6 : 7);
 			}
 		}
 	}

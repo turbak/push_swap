@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 21:19:41 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/09 19:44:19 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/10 22:49:32 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void		validate_arr(int *arg, int size)
 	int i;
 	int j;
 
+	if (!size)
+		die();
 	i = 0;
 	while (i < size)
 	{

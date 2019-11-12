@@ -20,7 +20,7 @@ FILES3 = 	array_funcs.c\
 OBJ1 = $(patsubst %.c, %.o, $(FILES1))
 OBJ2 = $(patsubst %.c, %.o, $(FILES2))
 OBJ3 = $(patsubst %.c, %.o, $(FILES3))
-FLAGS		=  -Wall -Werror -Wextra
+CPPFLAGS		=  -Wall -Werror -Wextra
 HEADER		= push_swap.h
 NAME 		= $(NAME1) $(NAME2)
 
@@ -30,13 +30,13 @@ $(LIBFT):
 	$(MAKE) -sC libft all
 
 $(NAME1): $(OBJ1) $(OBJ3)
-	gcc -o $(NAME1) $(OBJ1) $(OBJ3) $(LIBFT)
+	gcc $(CPPFLAGS) -o $(NAME1) $(OBJ1) $(OBJ3) $(LIBFT)
 
 $(NAME2): $(OBJ2) $(OBJ3)
-	gcc -o $(NAME2) $(OBJ2) $(OBJ3) $(LIBFT)
+	gcc $(CPPFLAGS) -o $(NAME2) $(OBJ2) $(OBJ3) $(LIBFT)
 
 %.o: %.c $(HEADER) $(LIBFT)
-	gcc -I . -c $< -o $@
+	gcc -I . $(CPPFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ1) $(OBJ2) $(OBJ3) && $(MAKE) clean -C ./libft

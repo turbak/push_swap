@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/21 14:39:55 by tgarkbit          #+#    #+#             */
-/*   Updated: 2019/11/06 17:33:06 by cauranus         ###   ########.fr       */
+/*   Created: 2019/09/21 14:39:55 by cauranus          #+#    #+#             */
+/*   Updated: 2019/11/11 19:37:35 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int				get_next_line(const int fd, char **line)
 {
 	static	char	*a[256];
 	char			buf[BUFF_SIZE + 1];
-	char			*tmp;
 	int				n;
 
 	if (fd < 0 || !line || (read(fd, buf, 0) < 0))
@@ -36,9 +35,7 @@ int				get_next_line(const int fd, char **line)
 	while ((n = read(fd, buf, BUFF_SIZE)))
 	{
 		buf[n] = '\0';
-		tmp = ft_strjoin(a[fd], buf);
-		free(a[fd]);
-		a[fd] = tmp;
+		ft_swapfree((void**)&a[fd], ft_strjoin(a[fd], buf));
 		if (ft_strchr(a[fd], '\n'))
 			break ;
 	}
