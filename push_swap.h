@@ -6,7 +6,7 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:41:13 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/11 19:33:46 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/12 13:05:16 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct			s_flags
 	int					*sort;
 }						t_flags;
 
-long					ft_atol(const char *str);
+void					ft_atoi_check(const char *str);
 t_stack					*atostack(int *arg, int size);
 void					sab(t_stack **a);
 void					ss(t_stack **a, t_stack **b);

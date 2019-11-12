@@ -6,13 +6,13 @@
 /*   By: cauranus <cauranus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 12:10:53 by cauranus          #+#    #+#             */
-/*   Updated: 2019/11/10 22:44:16 by cauranus         ###   ########.fr       */
+/*   Updated: 2019/11/12 13:05:34 by cauranus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long		ft_atol(const char *str)
+void		ft_atoi_check(const char *str)
 {
 	long	num;
 	int		neg;
@@ -31,11 +31,10 @@ long		ft_atol(const char *str)
 	while (*str >= '0' && *str <= '9')
 	{
 		num = num * 10 + (*str - '0');
-		if (neg ? -num < -2147483648l : num > 2147483647l)
-			return (neg ? 0 : -1);
+		if (neg ? num > 2147483648l : num > 2147483647l)
+			die();
 		str++;
 	}
-	return (neg ? (-1 * (int)num) : (int)num);
 }
 
 static void	get_flags2(char **av, t_flags *flags)
@@ -114,13 +113,9 @@ int			validate_str(char *str)
 	int i;
 
 	i = 0;
+	ft_atoi_check(str);
 	if (*str == '-')
 		str++;
-	if (ft_strlen(str) > 10)
-		return (0);
-	else if (ft_strlen(str) == 10)
-		if (ft_atol(str) == 0 || ft_atol(str) == -1)
-			return (0);
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
